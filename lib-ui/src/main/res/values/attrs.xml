@@ -9,14 +9,6 @@
         <attr name="android:text" />
         <attr name="android:textColor" />
         <attr name="android:textStyle" />
-        <attr name="android:gravity">
-            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
-            <flag name="center" value="0x11" />
-            <!-- Push object to the beginning of its container, not changing its size. -->
-            <flag name="start" value="0x00800003" />
-            <!-- Push object to the end of its container, not changing its size. -->
-            <flag name="end" value="0x00800005" />
-        </attr>
         <attr name="fadeIn" format="boolean" />
         <attr name="scaleIn" format="boolean" />
         <attr name="android:animationDuration" />

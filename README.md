@@ -38,6 +38,60 @@ button.apply {
     tint = Color.parseColor("#FF3700B3")
 } 
 ```
+
+Anchor of the ExpandableButton is based on the alignment to the parent
+
+Examples
+
+```
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!-- Align to start, anchor is start of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"/>
+        
+    <!-- Align to center, anchor is middle of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+        
+    <!-- Align to end, end is start of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"/>
+</LinearLayout>
+```
+```
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- Align to start, anchor is start of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"/>
+        
+    <!-- Align to center, anchor is middle of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+        
+    <!-- Align to end, end is start of the button -->
+    <ExpandableButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</LinearLayout>
+```
+
 ###### XML attributes
 
 |Attribute Name|Format|Description|Default Value|
@@ -50,7 +104,6 @@ button.apply {
 |android:text|reference\|text|Text of button|null|
 |android:textColor|reference\|color|Text color of button|depends on the theme|
 |android:textStyle|normal\|bold\|italic|Text style of button|normal|
-|android:gravity|start\|center\|end|Alignment of the button|center|
 |fadeIn|boolean|Fade in when the button display on the screen|false|
 |scaleIn|boolean|Scale in when the button display on the screen|false|
 |android:animationDuration|integer|Animation time in millisecond of fade in, scale in, expand and collapse|300|
@@ -68,7 +121,6 @@ button.apply {
 |text|String|✓|✓|✓|Text of button|null|
 |textColor|ColorStateList|✓|✓|✓|Text color of button|depends on the theme|
 |textStyle|Int|×|✓|✓|Text style of button|Typeface.NORMAL|
-|gravity|Int|×|✓|✓|Alignment of the button|Gravity.CENTER|
 |fadeIn|Boolean|×|✓|✓|Fade in when the button display on the screen|false|
 |scaleIn|Boolean|×|✓|✓|Scale in when the button display on the screen|false|
 |animationDuration|Long|×|✓|✓|Animation time in millisecond of fade in, scale in, expand and collapse|300|
@@ -106,6 +158,10 @@ class MyAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 1. Include the module [lib-ui](lib-ui) into your project.
 2. Include the UI element that mentioned at the top of the README.md
 
+#### Notes
+- ExpandableButton attach LayoutTransition to the container ViewGroup. If you don't want to have LayoutTransition for other views, please add extra container view to wrap the ExpandableButton
+- If the width of container view is smaller than the width of expanded ExpandableButton, you will see the ExpandableButton jumps / clipped. Please make sure your container view has enough size
+
 #### Known Issues
 
-- There is layout glitch if the button text is very long
+- According to the MaterialButton from material design library, it doesn't support very long button text

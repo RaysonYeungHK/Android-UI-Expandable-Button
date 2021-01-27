@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.setPadding
 import androidx.databinding.DataBindingUtil
 import com.codedeco.lib.ui.R
@@ -107,12 +106,6 @@ class ExpandableButton @JvmOverloads constructor(
             binding.button.setTypeface(binding.button.typeface, value)
         }
 
-    var gravity: Int = defaultGravity
-        set(value) {
-            field = value
-            onGravityChanged()
-        }
-
     var fadeIn: Boolean = defaultFadeIn
     var scaleIn: Boolean = defaultScaleIn
 
@@ -158,15 +151,20 @@ class ExpandableButton @JvmOverloads constructor(
                 defaultTextColors
             }
             this.textStyle = attributes.getInt(R.styleable.ExpandableButton_android_textStyle, defaultTextStyle)
-            this.gravity = attributes.getInt(R.styleable.ExpandableButton_android_gravity, defaultGravity)
             this.fadeIn = attributes.getBoolean(R.styleable.ExpandableButton_fadeIn, defaultFadeIn)
             this.scaleIn = attributes.getBoolean(R.styleable.ExpandableButton_scaleIn, defaultScaleIn)
             this.isExpanded = attributes.getBoolean(R.styleable.ExpandableButton_expanded, defaultExpanded)
             this.animationDuration = attributes.getInt(R.styleable.ExpandableButton_android_animationDuration, defaultAnimationDuration.toInt()).toLong()
 
             attributes.recycle()
+        }
+        show()
+    }
 
-            (binding.root as ViewGroup).layoutTransition = _layoutTransition
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        if (binding.root.parent != binding.root) {
+            (binding.root.parent as ViewGroup).layoutTransition = _layoutTransition
         }
     }
 
@@ -175,43 +173,10 @@ class ExpandableButton @JvmOverloads constructor(
         binding.button.setOnClickListener(l)
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        // We need to calculate the size of the button after expanded, then set to the parent
-        // Otherwise the view will jump during expanding / collapsing
-        if (!initialized) {
-            initialized = true
-            binding.root.layoutParams.width = (binding.button.measuredWidth)
-            collapse()
-        }
-    }
-
-    override fun invalidate() {
-        initialized = false
-        expand()
-        _layoutTransition.setDuration(0)
-        super.invalidate()
-    }
-
-    private fun onGravityChanged() {
-        ConstraintSet().apply {
-            clone(binding.container)
-            clear(binding.button.id, ConstraintSet.START)
-            clear(binding.button.id, ConstraintSet.END)
-            if (gravity or Gravity.START == Gravity.START || gravity or Gravity.CENTER == Gravity.CENTER) {
-                connect(binding.button.id, ConstraintSet.START, binding.container.id, ConstraintSet.START)
-            }
-            if (gravity or Gravity.END == Gravity.END || gravity or Gravity.CENTER == Gravity.CENTER) {
-                connect(binding.button.id, ConstraintSet.END, binding.container.id, ConstraintSet.END)
-            }
-            applyTo(binding.container)
-        }
-    }
-
     fun show() {
-        invalidate()
+        _layoutTransition.setDuration(0)
+        collapse()
         binding.button.post {
-            collapse()
             if (scaleIn) {
                 scaleInXAnimator.start()
                 scaleInYAnimator.start()
