@@ -1,0 +1,3 @@
+include ':lib-ui'
+include ':app'
+rootProject.name = "Android UI Expandable Button"
