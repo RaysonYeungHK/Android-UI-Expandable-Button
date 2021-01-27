@@ -47,8 +47,8 @@ button.apply {
 |android:tint|reference\|color|Color of button background|depends on the theme|
 |android:icon|reference|Icon of button|null|
 |iconTint|reference\|color|Color of button icon|depends on the theme|
-|android:text|reference\text|Text of button|null|
-|android:textColor|reference\color|Text color of button|depends on the theme|
+|android:text|reference\|text|Text of button|null|
+|android:textColor|reference\|color|Text color of button|depends on the theme|
 |android:textStyle|normal\|bold\|italic|Text style of button|normal|
 |android:gravity|start\|center\|end|Alignment of the button|center|
 |fadeIn|boolean|Fade in when the button display on the screen|false|
