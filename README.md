@@ -59,19 +59,19 @@ button.apply {
 ###### Public Properties
 |Property|Data Type|Nullable|Read|Write|Description|Default Value|
 |---|---|:-:|:-:|:-:|---|---|
-|isExpanded|Boolean|X|√|X|Expand state of the button|false|
-|strokeWidth|Int|X|√|√|Width of button border|0|
-|strokeColor|ColorStateList|√|√|√|Color of button border|null|
-|tint|ColorStateList|√|√|√|Color of button background|depends on the theme|
-|icon|Drawable|√|√|√|Icon of button|null|
-|iconTint|ColorStateList|√|√|√|Color of button icon|depends on the theme|
-|text|String|√|√|√|Text of button|null|
-|textColor|ColorStateList|√|√|√|Text color of button|depends on the theme|
-|textStyle|Int|X|√|√|Text style of button|Typeface.NORMAL|
-|gravity|Int|X|√|√|Alignment of the button|Gravity.CENTER|
-|fadeIn|Boolean|X|√|√|Fade in when the button display on the screen|false|
-|scaleIn|Boolean|X|√|√|Scale in when the button display on the screen|false|
-|animationDuration|Long|X|√|√|Animation time in millisecond of fade in, scale in, expand and collapse|300|
+|isExpanded|Boolean|×|✓|×|Expand state of the button|false|
+|strokeWidth|Int|×|✓|✓|Width of button border|0|
+|strokeColor|ColorStateList|✓|✓|✓|Color of button border|null|
+|tint|ColorStateList|✓|✓|✓|Color of button background|depends on the theme|
+|icon|Drawable|✓|✓|✓|Icon of button|null|
+|iconTint|ColorStateList|✓|✓|✓|Color of button icon|depends on the theme|
+|text|String|✓|✓|✓|Text of button|null|
+|textColor|ColorStateList|✓|✓|✓|Text color of button|depends on the theme|
+|textStyle|Int|×|✓|✓|Text style of button|Typeface.NORMAL|
+|gravity|Int|×|✓|✓|Alignment of the button|Gravity.CENTER|
+|fadeIn|Boolean|×|✓|✓|Fade in when the button display on the screen|false|
+|scaleIn|Boolean|×|✓|✓|Scale in when the button display on the screen|false|
+|animationDuration|Long|×|✓|✓|Animation time in millisecond of fade in, scale in, expand and collapse|300|
 
 ###### Public Methods
 
